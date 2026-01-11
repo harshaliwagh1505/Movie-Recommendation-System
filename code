@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Define a structure for a movie
+struct Movie {
+    string name;
+    string genre;
+    string language;
+    string ageRating;
+};
+
+int main() {
+    // Array of movies with more variety
+    Movie movies[] = {
+        {"Inception", "Sci-Fi", "English", "PG-13"},
+        {"Parasite", "Thriller", "Korean", "R"},
+        {"Spirited Away", "Animation", "Japanese", "PG"},
+        {"The Dark Knight", "Action", "English", "PG-13"},
+        {"3 Idiots", "Comedy", "Hindi", "PG"},
+        {"Your Name", "Animation", "Japanese", "PG"},
+        {"Avengers: Endgame", "Action", "English", "PG-13"},
+        {"Joker", "Thriller", "English", "R"},
+        {"Coco", "Animation", "English", "PG"},
+        {"Drishyam", "Thriller", "Hindi", "PG-13"},
+        {"The Matrix", "Sci-Fi", "English", "R"},
+        {"Titanic", "Romance", "English", "PG-13"},
+        {"Kahaani", "Thriller", "Hindi", "PG-13"},
+        {"Frozen", "Animation", "English", "PG"},
+        {"Your Lie in April", "Animation", "Japanese", "PG"},
+        {"Interstellar", "Sci-Fi", "English", "PG-13"},
+        {"The Godfather", "Crime", "English", "R"},
+        {"Bahubali", "Action", "Hindi", "PG-13"},
+        {"Howl's Moving Castle", "Animation", "Japanese", "PG"},
+        {"La La Land", "Romance", "English", "PG-13"}
+    };
+
+    int numMovies = sizeof(movies) / sizeof(Movie);
+
+    bool continueSearch = true;
+    while (continueSearch) {
+        string userGenre, userLanguage, userAge;
+
+        // Ask user for preferences
+        cout << "Enter preferred genre (Action, Comedy, Thriller, Sci-Fi, Animation, Romance, Crime): ";
+        cin >> userGenre;
+        cout << "Enter preferred language (English, Hindi, Korean, Japanese): ";
+        cin >> userLanguage;
+        cout << "Enter preferred age rating (PG, PG-13, R): ";
+        cin >> userAge;
+
+        // Search for matching movies
+        bool found = false;
+        cout << "\nRecommended Movies:\n";
+        for (int i = 0; i < numMovies; i++) {
+            if (movies[i].genre == userGenre &&
+                movies[i].language == userLanguage &&
+                movies[i].ageRating == userAge) {
+                cout << "- " << movies[i].name << endl;
+                found = true;
+            }
+        }
+
+        if (!found) {
+            cout << "No movies found matching your preferences.\n";
+        }
+
+        // Ask if user wants to continue
+        char choice;
+        cout << "\nDo you want to search again? (Y/N): ";
+        cin >> choice;
+        if (choice != 'Y' && choice != 'y') {
+            continueSearch = false;
+        }
+        cout << endl;
+    }
+
+    cout << "Thank you for using the movie recommendation system!\n";
+    return 0;
+}
